@@ -54,11 +54,11 @@ public class ThongBao {
 		buttonNext.click();
 		WebElement inputPass = driver.findElement(By.xpath("//*[@id=\"i0118\"]"));
 		inputPass.sendKeys("dagevjul14");
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		WebElement buttonSubmit = driver.findElement(By.xpath("//*[@id=\"idSIButton9\"]"));
 		buttonSubmit.click();
 		WebElement buttonConfirm = driver.findElement(By.xpath("//*[@id=\"idBtn_Back\"]"));
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		buttonConfirm.click();
 		return driver.getTitle();
 	}
