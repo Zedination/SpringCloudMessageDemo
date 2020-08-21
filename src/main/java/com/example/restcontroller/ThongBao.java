@@ -1,5 +1,8 @@
 package com.example.restcontroller;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +22,20 @@ public class ThongBao {
 	}
 	@GetMapping("/get-env")
 	public String getEnv() {
-		return System.getenv("GOOGLE_CHROME_PATH") +" / "+System.getenv("CHROMEDRIVER_PATH");
+		System.setProperty("webdriver.chrome.driver",System.getenv("CHROMEDRIVER_PATH"));
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-debugging-port=9222");
+		options.addArguments("--headless");
+		options.addArguments("--disable-gpu");
+		options.addArguments("--no-sandbox");
+		WebDriver driver = new ChromeDriver();
+		String url = "https://vnexpress.net/";
+		driver.get(url);
+		return System.getenv("GOOGLE_CHROME_PATH") +" / "+System.getenv("CHROMEDRIVER_PATH")+"/n"+"Tiêu để: "+
+		driver.getTitle();
+	}
+	@GetMapping("/demo-selenium")
+	public String semoSelenium() {
+		return "aaaa";
 	}
 }
