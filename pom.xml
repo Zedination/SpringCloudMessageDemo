@@ -66,7 +66,7 @@
 			<version>3.141.59</version>
 		</dependency>
 		<!-- Phải chọn đúng phiên bản Chrome Driver tương ứng với phiên bản của 
-			trình duyệt. -->
+			trình duyệt. Ở đây là phiên bản 84.0.4147.105 -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chromium-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -106,6 +106,7 @@
 			<artifactId>htmlunit</artifactId>
 			<version>2.42.0</version>
 		</dependency>
+		 <!-- thư viện Google Guava cần thiết (bắt buộc phải có) khi triển khai Selenium trên Heroku -->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
