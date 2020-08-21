@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +35,10 @@ public class ThongBao {
 		WebDriver driver = new ChromeDriver();
 		String url = "https://vnexpress.net/";
 		driver.get(url);
-		return System.getenv("GOOGLE_CHROME_PATH") +" / "+System.getenv("CHROMEDRIVER_PATH")+"/n"+"Tiêu để: "+
+		String result =  System.getenv("GOOGLE_CHROME_PATH") +" / "+System.getenv("CHROMEDRIVER_PATH")+"/n"+"Tiêu để: "+
 		driver.getTitle();
+		driver.close();
+		return result;
 	}
 	@GetMapping("/demo-selenium")
 	public String semoSelenium() throws InterruptedException {
@@ -49,19 +53,16 @@ public class ThongBao {
 		String url = "http://sis.utc.edu.vn/";
 		driver.get(url);
 		driver.findElement(By.xpath("//*[@id=\"main\"]/div/div/a")).click();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement inputUsername = driver.findElement(By.xpath("//*[@id=\"i0116\"]"));
 		inputUsername.sendKeys("duc171201239@st.utc.edu.vn");
-		WebElement buttonNext = driver.findElement(By.xpath("//*[@id=\"idSIButton9\"]"));
+		WebElement buttonNext = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"idSIButton9\"]")));
 		buttonNext.click();
-		Thread.sleep(2000);
-		WebElement inputPass = driver.findElement(By.xpath("//*[@id=\"i0118\"]"));
+		WebElement inputPass = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"i0118\"]")));
 		inputPass.sendKeys("dagevjul14");
-		Thread.sleep(2000);
-		WebElement buttonSubmit = driver.findElement(By.xpath("//*[@id=\"idSIButton9\"]"));
+		WebElement buttonSubmit = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"idSIButton9\"]")));
 		buttonSubmit.click();
-		Thread.sleep(2000);
-		WebElement buttonConfirm = driver.findElement(By.xpath("//*[@id=\"idBtn_Back\"]"));
-		Thread.sleep(2000);
+		WebElement buttonConfirm =wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id=\"idBtn_Back\"]"))));
 		buttonConfirm.click();
 		String result = driver.getTitle();
 		driver.manage().deleteAllCookies();
