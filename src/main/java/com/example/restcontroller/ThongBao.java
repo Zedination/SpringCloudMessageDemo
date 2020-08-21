@@ -24,7 +24,7 @@ public class ThongBao {
 	public String getEnv() {
 		System.setProperty("webdriver.chrome.driver",System.getenv("CHROMEDRIVER_PATH"));
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-debugging-port=9222");
+		//options.addArguments("--remote-debugging-port=9222");
 		options.addArguments("--headless");
 		options.addArguments("--disable-gpu");
 		options.addArguments("--no-sandbox");
