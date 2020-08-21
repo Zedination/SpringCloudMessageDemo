@@ -35,5 +35,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
     return self.registration.showNotification(
         notificationTitle,
         notificationOptions,
-    );
+    ).onClicked.addListener(()=>{
+        window.open('https://demo-thongbao.herokuapp.com');
+    });
 });
