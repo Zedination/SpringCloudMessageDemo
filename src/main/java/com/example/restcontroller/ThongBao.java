@@ -53,15 +53,14 @@ public class ThongBao {
 		inputUsername.sendKeys("duc171201239@st.utc.edu.vn");
 		WebElement buttonNext = driver.findElement(By.xpath("//*[@id=\"idSIButton9\"]"));
 		buttonNext.click();
-		Thread.sleep(2000);
 		WebElement inputPass = driver.findElement(By.xpath("//*[@id=\"i0118\"]"));
 		inputPass.sendKeys("dagevjul14");
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		WebElement buttonSubmit = driver.findElement(By.xpath("//*[@id=\"idSIButton9\"]"));
 		buttonSubmit.click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		WebElement buttonConfirm = driver.findElement(By.xpath("//*[@id=\"idBtn_Back\"]"));
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		buttonConfirm.click();
 		String result = driver.getTitle();
 		driver.manage().deleteAllCookies();
