@@ -44,6 +44,7 @@ public class ThongBao {
 		options.addArguments("--headless");
 		options.addArguments("--disable-gpu");
 		options.addArguments("--no-sandbox");
+		options.addArguments("--disable-dev-shm-usage");
 		WebDriver driver = new ChromeDriver();
 		String url = "http://sis.utc.edu.vn/";
 		driver.get(url);
@@ -62,7 +63,9 @@ public class ThongBao {
 		WebElement buttonConfirm = driver.findElement(By.xpath("//*[@id=\"idBtn_Back\"]"));
 		Thread.sleep(2000);
 		buttonConfirm.click();
+		String result = driver.getTitle();
 		driver.manage().deleteAllCookies();
-		return driver.getTitle();
+		driver.close();
+		return result;
 	}
 }

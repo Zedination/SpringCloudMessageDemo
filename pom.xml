@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chromium-driver</artifactId>
-			<version>4.0.0-alpha-5</version>
+			<version>4.0.0-alpha-6</version>
 		</dependency>
 		<!-- Phụ thuộc bên dưới để quản lý webdriver -->
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
