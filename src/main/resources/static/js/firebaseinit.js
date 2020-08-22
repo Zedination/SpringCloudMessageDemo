@@ -71,6 +71,7 @@ $('#sendData').click(() => {
         });
     }
 });
+//aaaaaaaaaaa
 //check thông báo cho firefox
 $('#testFirefox').click(()=>{
     Notification.requestPermission().then(()=>{
