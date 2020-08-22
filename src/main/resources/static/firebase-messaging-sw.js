@@ -19,7 +19,11 @@ firebase.initializeApp({
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
-
+self.addEventListener('notificationclick', function(event){
+    event.notification.close();
+    event.waitUntil(
+            clients.openWindow("https://demo-thongbao.herokuapp.com"));
+});
 messaging.setBackgroundMessageHandler(function(payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
@@ -31,11 +35,6 @@ messaging.setBackgroundMessageHandler(function(payload) {
         body: payload.data.content,
         icon: "/itwonders-web-logo.png",
     };
-    self.addEventListener('notificationclick', function(event){
-    	event.notification.close();
-    	event.waitUntil(
-    			clients.openWindow("https://demo-thongbao.herokuapp.com"));
-    });
     return self.registration.showNotification(
         notificationTitle,
         notificationOptions,
