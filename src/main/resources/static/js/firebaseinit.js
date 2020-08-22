@@ -35,6 +35,18 @@ messaging.onMessage((payload) => {
     console.log('Message received. ', payload);
     $('.toast .toast-body').text(payload.data.content);
     $('.toast').toast('show');
+ // Customize notification here
+    const notificationTitle = "Background Message Title";
+    const notificationOptions = {
+        body: payload.data.content,
+        icon: "/itwonders-web-logo.png",
+    };
+    let thongBao = new Notification(notificationTitle, notificationOptions);
+    thongBao.onclick = function(event){
+        thongBao.close();
+    	window.open("https://demo-thongbao.herokuapp.com");
+    }
+    
 });
 $('input[type=checkbox]').click(() => {
     let size = $('input[type=checkbox]:checked').length;
@@ -59,3 +71,16 @@ $('#sendData').click(() => {
         });
     }
 });
+//check thông báo cho firefox
+$('#testFirefox').click(()=>{
+    Notification.requestPermission().then(()=>{
+        return messaging.getToken();
+    }).then(function (token) {
+    console.log(token);
+    $('#myToken').html(token);
+    $('#tokenFCM').val(token);
+})
+.catch(function (err) {
+    console.log("Unable to get permission to notify.", err);
+});
+})

@@ -31,11 +31,13 @@ messaging.setBackgroundMessageHandler(function(payload) {
         body: payload.data.content,
         icon: "/itwonders-web-logo.png",
     };
-
+    self.addEventListener('notificationclick', function(event){
+    	event.notification.close();
+    	event.waitUntil(
+    			clients.openWindow("https://demo-thongbao.herokuapp.com"));
+    });
     return self.registration.showNotification(
         notificationTitle,
         notificationOptions,
-    ).onClicked.addListener(()=>{
-        window.open('https://demo-thongbao.herokuapp.com');
-    });
+    );
 });
