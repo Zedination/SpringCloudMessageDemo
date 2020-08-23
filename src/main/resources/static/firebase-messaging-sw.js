@@ -15,20 +15,21 @@ firebase.initializeApp({
     projectId: "qldt-firebase",
     appId: "1:1000396610409:web:5e775583757c533d2ffbf8",
 });
-
+var link = "";
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
 self.addEventListener('notificationclick', function(event){
     event.notification.close();
     event.waitUntil(
-            clients.openWindow("https://demo-thongbao.herokuapp.com"));
+            clients.openWindow(link));
 });
 messaging.setBackgroundMessageHandler(function(payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
         payload,
     );
+        link = "https://google.com";
     // Customize notification here
     const notificationTitle = "Background Message Title";
     const notificationOptions = {
