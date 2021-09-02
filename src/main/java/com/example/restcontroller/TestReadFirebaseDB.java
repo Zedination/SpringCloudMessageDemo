@@ -29,7 +29,7 @@ public class TestReadFirebaseDB {
 //		System.out.println(ref.orderByChild("hoc_phi").equalTo(true));
 		Query query = database.getReference("list-tokens").orderByChild("hoc_phi").equalTo(false);
 		Query query1 = database.getReference("list-tokens").orderByKey();
-		query.addValueEventListener(new ValueEventListener() {
+		query1.addValueEventListener(new ValueEventListener() {
 
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -46,7 +46,7 @@ public class TestReadFirebaseDB {
 
 			}
 		});
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		System.out.println(data.size());
 //		Query query3 = database.getReference("list-tokens/"+"1598122099749");
 //		query3.addValueEventListener(new ValueEventListener() {
@@ -84,7 +84,11 @@ public class TestReadFirebaseDB {
 	@GetMapping("delete-db")
 	public String demo03() {
 		final FirebaseDatabase database = FirebaseDatabase.getInstance();
-		database.getReference("list-tokens").child("1598122098982").setValueAsync(null);
-		return null;
+		TokenObj value = new TokenObj();
+		value.setHoc_phi(false);
+		value.setKhao_sat(false);
+		value.setLich_hoc(false);
+		database.getReference("list-tokens").child("fTbjfbqjg9g8aVK9aip0qD:APA91bH2ttdkGnL8LScUIu1rF_dTozVnerFPBqdu2XZe4XsN4gQtkN5MKZCp2s-Db1OguHR2SSVu-EJJxkoNamodo2LylZxbOcu18oJiWUMasSW7esRCVYbse4MovtZ9D65yv40v2Dq1").setValueAsync(value);
+		return "success";
 	}
 }
